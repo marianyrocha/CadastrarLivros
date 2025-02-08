@@ -40,24 +40,20 @@
             this.txtAutor = new System.Windows.Forms.TextBox();
             this.lbTitulo = new System.Windows.Forms.Label();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
-            this.txtTítulo = new System.Windows.Forms.TextBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.txtTitulo = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btBuscar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dgvTabela = new System.Windows.Forms.DataGridView();
             this.lbLivros = new System.Windows.Forms.Label();
-            this.performanceCounter1 = new System.Diagnostics.PerformanceCounter();
             this.btExcluir = new System.Windows.Forms.Button();
             this.btEditar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btBuscar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabela)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -74,7 +70,7 @@
             this.groupBox1.Controls.Add(this.txtAutor);
             this.groupBox1.Controls.Add(this.lbTitulo);
             this.groupBox1.Controls.Add(this.cbCategoria);
-            this.groupBox1.Controls.Add(this.txtTítulo);
+            this.groupBox1.Controls.Add(this.txtTitulo);
             this.groupBox1.Location = new System.Drawing.Point(30, 119);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(309, 276);
@@ -126,6 +122,7 @@
             this.txtAno.Name = "txtAno";
             this.txtAno.Size = new System.Drawing.Size(69, 26);
             this.txtAno.TabIndex = 6;
+            this.txtAno.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtAno_KeyUp);
             // 
             // btCancelar
             // 
@@ -139,6 +136,7 @@
             this.btCancelar.Text = "CANCELAR";
             this.btCancelar.UseMnemonic = false;
             this.btCancelar.UseVisualStyleBackColor = false;
+            this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
             // btCadastrar
             // 
@@ -151,6 +149,7 @@
             this.btCadastrar.TabIndex = 0;
             this.btCadastrar.Text = "CADASTRAR";
             this.btCadastrar.UseVisualStyleBackColor = false;
+            this.btCadastrar.Click += new System.EventHandler(this.btCadastrar_Click);
             // 
             // lbAutor
             // 
@@ -169,6 +168,7 @@
             this.txtAutor.Name = "txtAutor";
             this.txtAutor.Size = new System.Drawing.Size(272, 26);
             this.txtAutor.TabIndex = 4;
+            this.txtAutor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtAutor_KeyUp);
             // 
             // lbTitulo
             // 
@@ -182,7 +182,11 @@
             // 
             // cbCategoria
             // 
-            this.cbCategoria.AutoCompleteCustomSource.AddRange(new string[] {
+            this.cbCategoria.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbCategoria.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbCategoria.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCategoria.FormattingEnabled = true;
+            this.cbCategoria.Items.AddRange(new object[] {
             "Autoajuda",
             "Desenvolvimento Pessoal",
             "Ficção Científica",
@@ -191,22 +195,19 @@
             "Drama",
             "Suspense",
             "Terror"});
-            this.cbCategoria.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbCategoria.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbCategoria.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(174, 168);
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(116, 24);
             this.cbCategoria.TabIndex = 2;
             // 
-            // txtTítulo
+            // txtTitulo
             // 
-            this.txtTítulo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTítulo.Location = new System.Drawing.Point(18, 43);
-            this.txtTítulo.Name = "txtTítulo";
-            this.txtTítulo.Size = new System.Drawing.Size(272, 26);
-            this.txtTítulo.TabIndex = 1;
+            this.txtTitulo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitulo.Location = new System.Drawing.Point(18, 43);
+            this.txtTitulo.Name = "txtTitulo";
+            this.txtTitulo.Size = new System.Drawing.Size(272, 26);
+            this.txtTitulo.TabIndex = 1;
+            this.txtTitulo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTitulo_KeyUp);
             // 
             // groupBox2
             // 
@@ -220,6 +221,18 @@
             this.groupBox2.Size = new System.Drawing.Size(414, 276);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
+            // 
+            // btBuscar
+            // 
+            this.btBuscar.BackColor = System.Drawing.Color.Gray;
+            this.btBuscar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBuscar.ForeColor = System.Drawing.Color.White;
+            this.btBuscar.Location = new System.Drawing.Point(312, 39);
+            this.btBuscar.Name = "btBuscar";
+            this.btBuscar.Size = new System.Drawing.Size(90, 30);
+            this.btBuscar.TabIndex = 13;
+            this.btBuscar.Text = "BUSCAR";
+            this.btBuscar.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
@@ -291,18 +304,6 @@
             this.label1.Size = new System.Drawing.Size(0, 37);
             this.label1.TabIndex = 3;
             // 
-            // btBuscar
-            // 
-            this.btBuscar.BackColor = System.Drawing.Color.Gray;
-            this.btBuscar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBuscar.ForeColor = System.Drawing.Color.White;
-            this.btBuscar.Location = new System.Drawing.Point(312, 39);
-            this.btBuscar.Name = "btBuscar";
-            this.btBuscar.Size = new System.Drawing.Size(90, 30);
-            this.btBuscar.TabIndex = 13;
-            this.btBuscar.Text = "BUSCAR";
-            this.btBuscar.UseVisualStyleBackColor = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -331,7 +332,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabela)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,13 +341,10 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbCategoria;
-        private System.Windows.Forms.TextBox txtTítulo;
+        private System.Windows.Forms.TextBox txtTitulo;
         private System.Windows.Forms.Button btCadastrar;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lbLivros;
-        private System.Diagnostics.PerformanceCounter performanceCounter1;
         private System.Windows.Forms.Button btCancelar;
         private System.Windows.Forms.Label lbTitulo;
         private System.Windows.Forms.Label lbAno;

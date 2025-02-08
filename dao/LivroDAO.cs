@@ -21,7 +21,7 @@ namespace CadastrarLivros.dao
                 string sql = "INSERT INTO Livros(Titulo, Autor, Categoria, Ano, Quantidade)" +
                     "VALUES(@Titulo,@Autor,@Categoria,@Ano,@Quantidade)";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
-                comando.Parameters.AddWithValue("@Titulo", livro.Título);
+                comando.Parameters.AddWithValue("@Titulo", livro.Titulo);
                 comando.Parameters.AddWithValue("@Autor", livro.Autor);
                 comando.Parameters.AddWithValue("@Categoria", livro.Categoria);
                 comando.Parameters.AddWithValue("@Ano", livro.Ano);
@@ -61,11 +61,14 @@ namespace CadastrarLivros.dao
                 string sql = "UPDATE Livros SET Titulo = @Titulo, Autor = @Autor, Categoria = @Categoria, Ano = @Ano, Quantidade = @Quantidade WHERE Id = @Id";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
                 comando.Parameters.AddWithValue("@Id", livro.Id);
-                comando.Parameters.AddWithValue("@Titulo", livro.Título);
+                comando.Parameters.AddWithValue("@Titulo", livro.Titulo);
                 comando.Parameters.AddWithValue("@Autor", livro.Autor);
                 comando.Parameters.AddWithValue("@Categoria", livro.Categoria);
                 comando.Parameters.AddWithValue("@Ano", livro.Ano);
                 comando.Parameters.AddWithValue("@Quantidade", livro.Quantidade);
+                comando.ExecuteNonQuery();
+                Console.WriteLine("Livro atualizado com sucesso!");
+                Conexao.FecharConexao();
             }
             catch(Exception ex)
             {
@@ -78,7 +81,7 @@ namespace CadastrarLivros.dao
             List<Livro> livros = new List<Livro>();
             try
             {
-                var sql = "SELECT * FROM LIVROS ORDER BY Id";
+                var sql = "SELECT * FROM Livros ORDER BY Id";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
                 using (MySqlDataReader dr = comando.ExecuteReader())
                 {
@@ -86,7 +89,7 @@ namespace CadastrarLivros.dao
                     {
                         Livro livro = new Livro();
                         livro.Id = dr.GetInt32("Id");
-                        livro.Título = dr.GetString("Titulo");
+                        livro.Titulo = dr.GetString("Titulo");
                         livro.Autor = dr.GetString("Autor");
                         livro.Categoria = dr.GetString("Categoria");
                         livro.Ano = dr.GetInt32("Ano");

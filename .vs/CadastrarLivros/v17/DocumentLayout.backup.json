@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|c:\\users\\maria\\onedrive\\\u00E1rea de trabalho\\cadastrarlivros\\dao\\livrodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|solutionrelative:dao\\livrodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|c:\\users\\maria\\onedrive\\\u00E1rea de trabalho\\cadastrarlivros\\conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|c:\\users\\maria\\onedrive\\\u00E1rea de trabalho\\cadastrarlivros\\models\\livro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|solutionrelative:models\\livro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|solutionrelative:conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7DA58840-6C27-4EF9-B534-AB3D8FD08F1C}|CadastrarLivros.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -34,21 +46,32 @@
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-07T20:11:34.82Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAjwBIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-07T20:43:30.526Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LivroDAO.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\dao\\LivroDAO.cs",
+              "RelativeDocumentMoniker": "dao\\LivroDAO.cs",
+              "ToolTip": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\dao\\LivroDAO.cs",
+              "RelativeToolTip": "dao\\LivroDAO.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAA5wE0AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-07T23:36:57.705Z",
               "EditorCaption": ""
             },
             {
@@ -58,12 +81,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\App.config",
+              "RelativeDocumentMoniker": "App.config",
+              "ToolTip": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\App.config",
+              "RelativeToolTip": "App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-02-07T23:21:54.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Livro.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\Models\\Livro.cs",
+              "RelativeDocumentMoniker": "Models\\Livro.cs",
+              "ToolTip": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\Models\\Livro.cs",
+              "RelativeToolTip": "Models\\Livro.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAowAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-07T23:15:59.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Conexao.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\Conexao.cs",
               "RelativeDocumentMoniker": "Conexao.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\\u00C1rea de Trabalho\\CadastrarLivros\\Conexao.cs",
               "RelativeToolTip": "Conexao.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwBkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-07T22:14:41.354Z",
               "EditorCaption": ""

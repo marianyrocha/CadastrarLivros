@@ -20,7 +20,7 @@ public static class Conexao
         return conexao;
     }
 
-    public static void FecharXonexao()
+    public static void FecharConexao()
     {
         conexao.Close();
     }

@@ -282,6 +282,7 @@
             this.btExcluir.Text = "EXCLUIR";
             this.btExcluir.UseMnemonic = false;
             this.btExcluir.UseVisualStyleBackColor = false;
+            this.btExcluir.Click += new System.EventHandler(this.btExcluir_Click);
             // 
             // btEditar
             // 
@@ -294,6 +295,7 @@
             this.btEditar.TabIndex = 11;
             this.btEditar.Text = "EDITAR";
             this.btEditar.UseVisualStyleBackColor = false;
+            this.btEditar.Click += new System.EventHandler(this.btEditar_Click);
             // 
             // label1
             // 

@@ -11,13 +11,12 @@ using System.Threading.Tasks;
 namespace CadastrarLivros.dao
 {
     internal class LivroDAO
-    {
-        static MySqlConnection Livro;
-        
+    {   
         public void Insert(Livro livro)
         {
             try
             {
+                
                 string sql = "INSERT INTO Livros(Titulo, Autor, Categoria, Ano, Quantidade)" +
                     "VALUES(@Titulo,@Autor,@Categoria,@Ano,@Quantidade)";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
@@ -27,7 +26,6 @@ namespace CadastrarLivros.dao
                 comando.Parameters.AddWithValue("@Ano", livro.Ano);
                 comando.Parameters.AddWithValue("@Quantidade", livro.Quantidade);
                 comando.ExecuteNonQuery();
-                Console.WriteLine("Livro cadastrado com sucesso!");
                 Conexao.FecharConexao();
             }
             catch(Exception ex)
@@ -45,7 +43,6 @@ namespace CadastrarLivros.dao
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
                 comando.Parameters.AddWithValue("@Id", livro.Id);
                 comando.ExecuteNonQuery();
-                Console.WriteLine("Livro excluido com sucesso!");
                 Conexao.FecharConexao();
             }
             catch(Exception ex ) 
@@ -53,21 +50,19 @@ namespace CadastrarLivros.dao
                 throw new Exception($"Erro ao tentar excluir: {ex.Message}");
             }
         }
-
         public void Update(Livro livro)
         {
             try
             {
                 string sql = "UPDATE Livros SET Titulo = @Titulo, Autor = @Autor, Categoria = @Categoria, Ano = @Ano, Quantidade = @Quantidade WHERE Id = @Id";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
-                comando.Parameters.AddWithValue("@Id", livro.Id);
                 comando.Parameters.AddWithValue("@Titulo", livro.Titulo);
                 comando.Parameters.AddWithValue("@Autor", livro.Autor);
                 comando.Parameters.AddWithValue("@Categoria", livro.Categoria);
                 comando.Parameters.AddWithValue("@Ano", livro.Ano);
                 comando.Parameters.AddWithValue("@Quantidade", livro.Quantidade);
+                comando.Parameters.AddWithValue("@Id", livro.Id);
                 comando.ExecuteNonQuery();
-                Console.WriteLine("Livro atualizado com sucesso!");
                 Conexao.FecharConexao();
             }
             catch(Exception ex)
@@ -75,7 +70,6 @@ namespace CadastrarLivros.dao
                 throw new Exception($"Erro ao tentar atualizar: {ex.Message}");
             }
         }
-
         public List<Livro> List()
         {
             List<Livro> livros = new List<Livro>();
@@ -105,6 +99,5 @@ namespace CadastrarLivros.dao
             }
             return livros;
         }
-
     }
 }

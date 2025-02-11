@@ -15,7 +15,7 @@ public static class Conexao
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Erro ao realizar a conexão com a base de dados!");
+            Console.WriteLine($"Erro ao realizar a conexão com a base de dados: {ex.Message}");
         }
         return conexao;
     }

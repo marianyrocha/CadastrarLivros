@@ -20,18 +20,14 @@ namespace CadastrarLivros
             InitializeComponent();
             cbCategoria.SelectedIndex = -1;
             txtTitulo.Select();
-            LivroDAO dados = new LivroDAO();
+            livroDAO dados = new livroDAO();
             dgvTabela.DataSource = dados.List();
 
         }
-
         private void btCadastrar_Click(object sender, EventArgs e)
         {
             try
             {
-                // add if linha nao for selecionada
-                // add if o id for existente (att)
-
                 Livro livro = new Livro();
 
                 livro.Titulo = txtTitulo.Text;
@@ -40,13 +36,35 @@ namespace CadastrarLivros
                 livro.Ano = Convert.ToInt32(txtAno.Text);
                 livro.Quantidade = Convert.ToInt32(txtQuantidade.Text);
 
-                LivroDAO livroDAO = new LivroDAO();
+                livroDAO livroDAO = new livroDAO(); 
+                int idEditar = Convert.ToInt32(dgvTabela.SelectedRows[0].Cells["Id"].Value);
+                List<Livro> livros = livroDAO.List();
+
+               foreach (var livroLista in livros)
+               {
+                    if (livroLista.Id == idEditar)
+                    {
+                        livro.Id = idEditar;
+                        livroDAO.Update(livro);
+                        MessageBox.Show($"Livro atualizado com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dgvTabela .DataSource = livroDAO.List();
+                      
+                        txtTitulo.Clear();
+                        txtAutor.Clear();
+                        txtAno.Clear();
+                        txtQuantidade.Clear();
+                        cbCategoria.Text = "";
+                        txtTitulo.Select();
+
+                        btCadastrar.Text = "CADASTRAR";
+
+                        return;
+                    }
+               }
+
                 livroDAO.Insert(livro);
-
-                dgvTabela.AutoGenerateColumns = true;
-                dgvTabela.DataSource = livroDAO.List();
-
                 MessageBox.Show($"Livro cadastrado com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvTabela.DataSource = livroDAO.List();
 
                 txtTitulo.Clear();
                 txtAutor.Clear();
@@ -54,14 +72,12 @@ namespace CadastrarLivros
                 txtQuantidade.Clear();
                 cbCategoria.Text = "";
                 txtTitulo.Select();
-
             }
             catch(Exception ex)
             {
                 MessageBox.Show($"Erro ao tentar cadastrar: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btCancelar_Click(object sender, EventArgs e)
         {
             txtTitulo.Clear();
@@ -71,7 +87,6 @@ namespace CadastrarLivros
             cbCategoria.Text = "";
             txtTitulo.Select();
         }
-
         private void txtTitulo_KeyUp(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -112,7 +127,7 @@ namespace CadastrarLivros
             {
                 if(excluir == DialogResult.Yes)
                 {
-                    LivroDAO livroDAO = new LivroDAO();
+                    livroDAO livroDAO = new livroDAO();
                     foreach (DataGridViewRow linha in dgvTabela.SelectedRows)
                     {
                         int idSelecionado = Convert.ToInt32(linha.Cells["Id"].Value);
@@ -132,7 +147,7 @@ namespace CadastrarLivros
         {
             try
             {
-                // add if linha nao for selecionada
+                btCadastrar.Text = "ATUALIZAR";
 
                 int Id = Convert.ToInt32(dgvTabela.SelectedRows[0].Cells[0].Value);
 
@@ -143,14 +158,6 @@ namespace CadastrarLivros
                 cbCategoria.SelectedItem = dgvTabela.SelectedRows[0].Cells["Categoria"].Value.ToString();
                 txtAno.Text = Convert.ToInt32(dgvTabela.SelectedRows[0].Cells["Ano"].Value).ToString();
                 txtQuantidade.Text = Convert.ToInt32(dgvTabela.SelectedRows[0].Cells["Quantidade"].Value).ToString();
-
-                LivroDAO livroDAO = new LivroDAO();
-                livroDAO.Update(livro);
-
-                dgvTabela.DataSource = livroDAO.List();
-
-                //colocar em cadastrar 
-                MessageBox.Show($"Livro atualizado com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)

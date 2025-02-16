@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CadastrarLivros.dao
 {
-    internal class LivroDAO
+    internal class livroDAO
     {   
         public void Insert(Livro livro)
         {
@@ -34,7 +34,6 @@ namespace CadastrarLivros.dao
             }
 
         }
-
         public void Delete(Livro livro)
         {
             try

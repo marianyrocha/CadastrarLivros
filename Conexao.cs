@@ -4,7 +4,6 @@ using System;
 public static class Conexao
 {
     static MySqlConnection conexao; 
-
     public static MySqlConnection Conectar()
     {
         try
@@ -19,7 +18,6 @@ public static class Conexao
         }
         return conexao;
     }
-
     public static void FecharConexao()
     {
         conexao.Close();

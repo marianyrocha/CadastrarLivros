@@ -2,9 +2,6 @@
 {
     partial class Form1
     {
-        /// <summary>
-        /// Variável de designer necessária.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>

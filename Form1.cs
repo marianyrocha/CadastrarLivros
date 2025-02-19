@@ -166,5 +166,29 @@ namespace CadastrarLivros
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            livroDAO livrodao = new livroDAO();
+            List<Livro> livros = livrodao.List();
+
+            string pesquisa = txtPesquisa.Text;
+
+            List<Livro> pesquisas = new List<Livro>();
+
+            foreach(var L in livros)
+            {
+                if (L.Titulo.Contains(pesquisa))
+                {
+                    pesquisas.Add(L);
+                }
+            }
+
+            dgvTabela.DataSource = pesquisas;
+        }
     }
 }

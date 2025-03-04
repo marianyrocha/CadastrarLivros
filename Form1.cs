@@ -17,18 +17,38 @@ namespace CadastrarLivros
     {
         public Form1()
         {
-            InitializeComponent();
-            cbCategoria.SelectedIndex = -1;
-            txtTitulo.Select();
-            livroDAO dados = new livroDAO();
-            dgvTabela.DataSource = dados.List();
+            try
+            {
+                InitializeComponent();
+                cbCategoria.SelectedIndex = -1;
+                txtTitulo.Select();
+                livroDAO dados = new livroDAO();
+                dgvTabela.DataSource = dados.List();
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao inicializar: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void btCadastrar_Click(object sender, EventArgs e)
         {
             try
             {
                 Livro livro = new Livro();
+
+                if (livro.Titulo == "" || livro.Autor == "")
+                {
+                    MessageBox.Show($"Prencha todos os campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (cbCategoria.SelectedIndex == -1)
+                {
+                    MessageBox.Show($"Selecione uma categoria", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
 
                 livro.Titulo = txtTitulo.Text;
                 livro.Autor = txtAutor.Text;
@@ -37,31 +57,36 @@ namespace CadastrarLivros
                 livro.Quantidade = Convert.ToInt32(txtQuantidade.Text);
 
                 livroDAO livroDAO = new livroDAO(); 
-                int idEditar = Convert.ToInt32(dgvTabela.SelectedRows[0].Cells["IdLivro"].Value);
-                List<Livro> livros = livroDAO.List();
 
-               foreach (var livroLista in livros)
-               {
-                    if (livroLista.Id == idEditar)
+                if (dgvTabela.SelectedRows.Count > 0)
+                {
+                    int idEditar = Convert.ToInt32(dgvTabela.SelectedRows[0].Cells["IdLivro"].Value);
+                    List<Livro> livros = livroDAO.List();
+
+
+                    foreach (var livroLista in livros)
                     {
-                        livro.Id = idEditar;
-                        livroDAO.Update(livro);
-                        MessageBox.Show($"Livro atualizado com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        dgvTabela .DataSource = livroDAO.List();
-                      
-                        txtTitulo.Clear();
-                        txtAutor.Clear();
-                        txtAno.Clear();
-                        txtQuantidade.Clear();
-                        cbCategoria.Text = "";
-                        txtTitulo.Select();
+                        if (livroLista.IdLivro == idEditar)
+                        {
+                            livro.IdLivro = idEditar;
+                            livroDAO.Update(livro);
+                            MessageBox.Show($"Livro atualizado com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            dgvTabela.DataSource = livroDAO.List();
 
-                        btCadastrar.Text = "CADASTRAR";
+                            txtTitulo.Clear();
+                            txtAutor.Clear();
+                            txtAno.Clear();
+                            txtQuantidade.Clear();
+                            cbCategoria.Text = "";
+                            txtTitulo.Select();
 
-                        return;
+                            btCadastrar.Text = "CADASTRAR";
+
+                            return;
+                        }
                     }
-               }
-
+                }
+               
                 livroDAO.Insert(livro);
                 MessageBox.Show($"Livro cadastrado com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dgvTabela.DataSource = livroDAO.List();
@@ -75,7 +100,7 @@ namespace CadastrarLivros
             }
             catch(Exception ex)
             {
-                MessageBox.Show($"Erro ao tentar cadastrar: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btCancelar_Click(object sender, EventArgs e)
@@ -137,7 +162,7 @@ namespace CadastrarLivros
                     foreach (DataGridViewRow linha in dgvTabela.SelectedRows)
                     {
                         int idSelecionado = Convert.ToInt32(linha.Cells["IdLivro"].Value);
-                        livroDAO.Delete(new Livro { Id = idSelecionado });
+                        livroDAO.Delete(new Livro { IdLivro = idSelecionado });
                     }
                     dgvTabela.DataSource = livroDAO.List();
                     MessageBox.Show($"Livro excluido com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -145,7 +170,7 @@ namespace CadastrarLivros
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao tentar excluir: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -174,7 +199,7 @@ namespace CadastrarLivros
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao tentar editar: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -215,7 +240,7 @@ namespace CadastrarLivros
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao tentar buscar: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

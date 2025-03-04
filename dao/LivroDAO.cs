@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CadastrarLivros.dao
 {
@@ -18,13 +19,15 @@ namespace CadastrarLivros.dao
             {
                 if(livro.Titulo == "")
                 {
-                    throw new Exception("Verifique se todos os campos estão preenchidos!");
+                    throw new Exception("Verifique se o campo título está preenchido!");
                 }
                 
                 if(livro.Autor == "")
                 {
-                    throw new Exception("Verifique se todos os campos estão preenchidos!");
+                    throw new Exception("Verifique se o campo autor está preenchido!!");
                 }
+
+               
 
                 if (livro.Ano <= 0)
                 {
@@ -58,9 +61,9 @@ namespace CadastrarLivros.dao
         {
             try
             {
-                string sql = "DELETE FROM Livros WHERE Id = @IdLivro";
+                string sql = "DELETE FROM Livros WHERE IdLivro = @IdLivro";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
-                comando.Parameters.AddWithValue("@IdLivro", livro.Id);
+                comando.Parameters.AddWithValue("@IdLivro", livro.IdLivro);
                 comando.ExecuteNonQuery();
                 Conexao.FecharConexao();
             }
@@ -75,12 +78,17 @@ namespace CadastrarLivros.dao
             {
                 if (livro.Titulo == "")
                 {
-                    throw new Exception("Verifique se todos os campos estão preenchidos!");
+                    throw new Exception("Verifique se o campo título está preenchido!");
                 }
 
                 if (livro.Autor == "")
                 {
-                    throw new Exception("Verifique se todos os campos estão preenchidos!");
+                    throw new Exception("Verifique se o campo autor está preenchido!!");
+                }
+
+                if (livro.Categoria == "")
+                {
+                    throw new Exception("Verifique se o campo categoria está selecionado!!");
                 }
 
                 if (livro.Ano <= 0)
@@ -93,14 +101,14 @@ namespace CadastrarLivros.dao
                     throw new Exception("Quantidade inválida!");
                 }
 
-                string sql = "UPDATE Livros SET Titulo = @Titulo, Autor = @Autor, Categoria = @Categoria, Ano = @Ano, Quantidade = @Quantidade WHERE Id = @IdLivro";
+                string sql = "UPDATE Livros SET Titulo = @Titulo, Autor = @Autor, Categoria = @Categoria, Ano = @Ano, Quantidade = @Quantidade WHERE IdLivro = @IdLivro";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
                 comando.Parameters.AddWithValue("@Titulo", livro.Titulo);
                 comando.Parameters.AddWithValue("@Autor", livro.Autor);
                 comando.Parameters.AddWithValue("@Categoria", livro.Categoria);
                 comando.Parameters.AddWithValue("@Ano", livro.Ano);
                 comando.Parameters.AddWithValue("@Quantidade", livro.Quantidade);
-                comando.Parameters.AddWithValue("@IdLivro", livro.Id);
+                comando.Parameters.AddWithValue("@IdLivro", livro.IdLivro);
                 comando.ExecuteNonQuery();
                 Conexao.FecharConexao();
             }
@@ -121,7 +129,7 @@ namespace CadastrarLivros.dao
                     while (dr.Read())
                     {
                         Livro livro = new Livro();
-                        livro.Id = dr.GetInt32("IdLivro");
+                        livro.IdLivro = dr.GetInt32("IdLivro");
                         livro.Titulo = dr.GetString("Titulo");
                         livro.Autor = dr.GetString("Autor");
                         livro.Categoria = dr.GetString("Categoria");

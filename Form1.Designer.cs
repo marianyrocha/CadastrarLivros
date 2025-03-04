@@ -25,6 +25,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbCategoria = new System.Windows.Forms.Label();
             this.lbQuantidade = new System.Windows.Forms.Label();
@@ -215,7 +216,7 @@
             this.groupBox2.Controls.Add(this.dgvTabela);
             this.groupBox2.Location = new System.Drawing.Point(357, 119);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(414, 276);
+            this.groupBox2.Size = new System.Drawing.Size(532, 276);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -224,7 +225,7 @@
             this.btBuscar.BackColor = System.Drawing.Color.Gray;
             this.btBuscar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBuscar.ForeColor = System.Drawing.Color.White;
-            this.btBuscar.Location = new System.Drawing.Point(312, 39);
+            this.btBuscar.Location = new System.Drawing.Point(425, 38);
             this.btBuscar.Name = "btBuscar";
             this.btBuscar.Size = new System.Drawing.Size(90, 30);
             this.btBuscar.TabIndex = 13;
@@ -247,15 +248,24 @@
             this.txtPesquisa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPesquisa.Location = new System.Drawing.Point(12, 42);
             this.txtPesquisa.Name = "txtPesquisa";
-            this.txtPesquisa.Size = new System.Drawing.Size(294, 26);
+            this.txtPesquisa.Size = new System.Drawing.Size(407, 26);
             this.txtPesquisa.TabIndex = 11;
             // 
             // dgvTabela
             // 
+            this.dgvTabela.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTabela.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTabela.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTabela.Location = new System.Drawing.Point(12, 82);
             this.dgvTabela.Name = "dgvTabela";
-            this.dgvTabela.Size = new System.Drawing.Size(390, 169);
+            this.dgvTabela.Size = new System.Drawing.Size(503, 169);
             this.dgvTabela.TabIndex = 0;
             // 
             // lbLivros
@@ -270,12 +280,13 @@
             // 
             // btExcluir
             // 
+            this.btExcluir.AutoSize = true;
             this.btExcluir.BackColor = System.Drawing.Color.Maroon;
             this.btExcluir.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btExcluir.ForeColor = System.Drawing.Color.White;
-            this.btExcluir.Location = new System.Drawing.Point(672, 66);
+            this.btExcluir.Location = new System.Drawing.Point(771, 64);
             this.btExcluir.Name = "btExcluir";
-            this.btExcluir.Size = new System.Drawing.Size(99, 37);
+            this.btExcluir.Size = new System.Drawing.Size(101, 37);
             this.btExcluir.TabIndex = 12;
             this.btExcluir.Text = "EXCLUIR";
             this.btExcluir.UseMnemonic = false;
@@ -284,12 +295,13 @@
             // 
             // btEditar
             // 
+            this.btEditar.AutoSize = true;
             this.btEditar.BackColor = System.Drawing.Color.Teal;
             this.btEditar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btEditar.ForeColor = System.Drawing.Color.White;
-            this.btEditar.Location = new System.Drawing.Point(576, 66);
+            this.btEditar.Location = new System.Drawing.Point(675, 64);
             this.btEditar.Name = "btEditar";
-            this.btEditar.Size = new System.Drawing.Size(90, 37);
+            this.btEditar.Size = new System.Drawing.Size(92, 37);
             this.btEditar.TabIndex = 11;
             this.btEditar.Text = "EDITAR";
             this.btEditar.UseVisualStyleBackColor = false;
@@ -317,7 +329,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(922, 450);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btExcluir);
             this.Controls.Add(this.label1);
@@ -327,7 +339,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

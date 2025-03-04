@@ -16,7 +16,27 @@ namespace CadastrarLivros.dao
         {
             try
             {
+                if(livro.Titulo == "")
+                {
+                    throw new Exception("Verifique se todos os campos estão preenchidos!");
+                }
                 
+                if(livro.Autor == "")
+                {
+                    throw new Exception("Verifique se todos os campos estão preenchidos!");
+                }
+
+                if (livro.Ano <= 0)
+                {
+                    throw new Exception("Ano inválido!");
+                }
+
+                if (livro.Quantidade < 0)
+                {
+                    throw new Exception("Quantidade inválida!");
+                }
+
+
                 string sql = "INSERT INTO Livros(Titulo, Autor, Categoria, Ano, Quantidade)" +
                     "VALUES(@Titulo,@Autor,@Categoria,@Ano,@Quantidade)";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
@@ -38,9 +58,9 @@ namespace CadastrarLivros.dao
         {
             try
             {
-                string sql = "DELETE FROM Livros WHERE Id = @Id";
+                string sql = "DELETE FROM Livros WHERE Id = @IdLivro";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
-                comando.Parameters.AddWithValue("@Id", livro.Id);
+                comando.Parameters.AddWithValue("@IdLivro", livro.Id);
                 comando.ExecuteNonQuery();
                 Conexao.FecharConexao();
             }
@@ -53,14 +73,34 @@ namespace CadastrarLivros.dao
         {
             try
             {
-                string sql = "UPDATE Livros SET Titulo = @Titulo, Autor = @Autor, Categoria = @Categoria, Ano = @Ano, Quantidade = @Quantidade WHERE Id = @Id";
+                if (livro.Titulo == "")
+                {
+                    throw new Exception("Verifique se todos os campos estão preenchidos!");
+                }
+
+                if (livro.Autor == "")
+                {
+                    throw new Exception("Verifique se todos os campos estão preenchidos!");
+                }
+
+                if (livro.Ano <= 0)
+                {
+                    throw new Exception("Ano inválido!");
+                }
+
+                if (livro.Quantidade < 0)
+                {
+                    throw new Exception("Quantidade inválida!");
+                }
+
+                string sql = "UPDATE Livros SET Titulo = @Titulo, Autor = @Autor, Categoria = @Categoria, Ano = @Ano, Quantidade = @Quantidade WHERE Id = @IdLivro";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
                 comando.Parameters.AddWithValue("@Titulo", livro.Titulo);
                 comando.Parameters.AddWithValue("@Autor", livro.Autor);
                 comando.Parameters.AddWithValue("@Categoria", livro.Categoria);
                 comando.Parameters.AddWithValue("@Ano", livro.Ano);
                 comando.Parameters.AddWithValue("@Quantidade", livro.Quantidade);
-                comando.Parameters.AddWithValue("@Id", livro.Id);
+                comando.Parameters.AddWithValue("@IdLivro", livro.Id);
                 comando.ExecuteNonQuery();
                 Conexao.FecharConexao();
             }
@@ -74,14 +114,14 @@ namespace CadastrarLivros.dao
             List<Livro> livros = new List<Livro>();
             try
             {
-                var sql = "SELECT * FROM Livros ORDER BY Id";
+                var sql = "SELECT * FROM Livros ORDER BY IdLivro";
                 MySqlCommand comando = new MySqlCommand(sql, Conexao.Conectar());
                 using (MySqlDataReader dr = comando.ExecuteReader())
                 {
                     while (dr.Read())
                     {
                         Livro livro = new Livro();
-                        livro.Id = dr.GetInt32("Id");
+                        livro.Id = dr.GetInt32("IdLivro");
                         livro.Titulo = dr.GetString("Titulo");
                         livro.Autor = dr.GetString("Autor");
                         livro.Categoria = dr.GetString("Categoria");

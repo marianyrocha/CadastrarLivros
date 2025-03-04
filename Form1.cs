@@ -37,7 +37,7 @@ namespace CadastrarLivros
                 livro.Quantidade = Convert.ToInt32(txtQuantidade.Text);
 
                 livroDAO livroDAO = new livroDAO(); 
-                int idEditar = Convert.ToInt32(dgvTabela.SelectedRows[0].Cells["Id"].Value);
+                int idEditar = Convert.ToInt32(dgvTabela.SelectedRows[0].Cells["IdLivro"].Value);
                 List<Livro> livros = livroDAO.List();
 
                foreach (var livroLista in livros)
@@ -121,21 +121,27 @@ namespace CadastrarLivros
 
         private void btExcluir_Click(object sender, EventArgs e)
         {
-            DialogResult excluir = MessageBox.Show("Tem certeza que quer excluir?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             try
             {
-                if(excluir == DialogResult.Yes)
+                if (dgvTabela.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show($"Nenhum livro selecionado", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DialogResult excluir = MessageBox.Show("Tem certeza que quer excluir?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (excluir == DialogResult.Yes)
                 {
                     livroDAO livroDAO = new livroDAO();
                     foreach (DataGridViewRow linha in dgvTabela.SelectedRows)
                     {
-                        int idSelecionado = Convert.ToInt32(linha.Cells["Id"].Value);
+                        int idSelecionado = Convert.ToInt32(linha.Cells["IdLivro"].Value);
                         livroDAO.Delete(new Livro { Id = idSelecionado });
                     }
                     dgvTabela.DataSource = livroDAO.List();
+                    MessageBox.Show($"Livro excluido com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                MessageBox.Show($"Livro excluido com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -147,6 +153,12 @@ namespace CadastrarLivros
         {
             try
             {
+                if (dgvTabela.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show($"Nenhum livro selecionado", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 btCadastrar.Text = "ATUALIZAR";
 
                 int Id = Convert.ToInt32(dgvTabela.SelectedRows[0].Cells[0].Value);
@@ -166,29 +178,47 @@ namespace CadastrarLivros
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            livroDAO livrodao = new livroDAO();
-            List<Livro> livros = livrodao.List();
-
-            string pesquisa = txtPesquisa.Text;
-
-            List<Livro> pesquisas = new List<Livro>();
-
-            foreach(var L in livros)
+            try
             {
-                if (L.Titulo.Contains(pesquisa))
+                livroDAO livrodao = new livroDAO();
+                List<Livro> livros = livrodao.List();
+
+                string pesquisa = txtPesquisa.Text.ToLower();
+
+                if (pesquisa == "")
                 {
-                    pesquisas.Add(L);
+                    MessageBox.Show($"Insira um título para pesquisar", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                List<Livro> pesquisas = new List<Livro>();
+
+                foreach (var L in livros)
+                {
+                    if (L.Titulo.ToLower().Contains(pesquisa))
+                    {
+                        pesquisas.Add(L);
+                    }
+                }
+
+
+                if (pesquisas.Count == 0)
+                {
+                    MessageBox.Show($"Livro não encontrado!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+
+                dgvTabela.DataSource = pesquisas;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao tentar buscar: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            dgvTabela.DataSource = pesquisas;
         }
+
     }
 }
